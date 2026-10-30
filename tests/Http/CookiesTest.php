@@ -91,7 +91,6 @@ class CookiesTest extends TestCase
         $c = new \Slim\Http\Cookies();
         $c->remove('foo');
         $prop = new \ReflectionProperty($c, 'data');
-        $prop->setAccessible(true);
         $cValue = $prop->getValue($c);
         $this->assertEquals('', $cValue['foo']['value']);
         $this->assertLessThan(time(), $cValue['foo']['expires']);

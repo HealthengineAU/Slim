@@ -87,7 +87,6 @@ class ResponseTest extends TestCase
     {
         $res = new \Slim\Http\Response();
         $prop = new \ReflectionProperty($res, 'status');
-        $prop->setAccessible(true);
         $res->status(301);
 
         $this->assertEquals(301, $prop->getValue($res));
@@ -97,7 +96,6 @@ class ResponseTest extends TestCase
     {
         $res = new \Slim\Http\Response();
         $property = new \ReflectionProperty($res, 'body');
-        $property->setAccessible(true);
         $property->setValue($res, 'foo');
 
         $this->assertEquals('foo', $res->getBody());
@@ -117,7 +115,6 @@ class ResponseTest extends TestCase
         $this->markTestSkipped('assertAttributeEquals() has been removed from PHPUnit 9');
         $res = new \Slim\Http\Response();
         $property = new \ReflectionProperty($res, 'body');
-        $property->setAccessible(true);
         $property->setValue($res, 'foo');
         $res->write('bar'); // <-- Should append to body
 
@@ -157,7 +154,6 @@ class ResponseTest extends TestCase
         $res->redirect('/foo');
 
         $pStatus = new \ReflectionProperty($res, 'status');
-        $pStatus->setAccessible(true);
 
         $this->assertEquals(302, $pStatus->getValue($res));
         $this->assertEquals('/foo', $res->headers['Location']);
