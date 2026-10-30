@@ -44,7 +44,6 @@ class SetTest extends TestCase
     {
         $this->bag = new \Slim\Helper\Set();
         $this->property = new \ReflectionProperty($this->bag, 'data');
-        $this->property->setAccessible(true);
     }
 
     public function testSet()

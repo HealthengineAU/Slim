@@ -59,7 +59,6 @@ class MiddlewareTest extends TestCase
         $app = new stdClass();
         $mw = new MyMiddleware();
         $property = new \ReflectionProperty($mw, 'app');
-        $property->setAccessible(true);
         $property->setValue($mw, $app);
 
         $this->assertSame($app, $mw->getApplication());
@@ -81,7 +80,6 @@ class MiddlewareTest extends TestCase
         $mw1 = new MyMiddleware();
         $mw2 = new MyMiddleware();
         $property = new \ReflectionProperty($mw1, 'next');
-        $property->setAccessible(true);
         $property->setValue($mw1, $mw2);
 
         $this->assertSame($mw2, $mw1->getNextMiddleware());
