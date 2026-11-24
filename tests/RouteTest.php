@@ -70,7 +70,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($route, 'name');
-        $property->setAccessible(true);
         $property->setValue($route, 'foo');
 
         $this->assertEquals('foo', $route->getName());
@@ -192,7 +191,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/hello/:first/:last', function () {});
 
         $property = new \ReflectionProperty($route, 'params');
-        $property->setAccessible(true);
         $property->setValue($route, array(
             'first' => 'foo',
             'last' => 'bar'
@@ -208,7 +206,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/hello/:first/:last', function () {});
 
         $property = new \ReflectionProperty($route, 'params');
-        $property->setAccessible(true);
         $property->setValue($route, array(
             'first' => 'foo',
             'last' => 'bar'
@@ -354,7 +351,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($route, 'conditions');
-        $property->setAccessible(true);
         $property->setValue($route, array('foo' => '\d{3}'));
 
         $this->assertEquals(array('foo' => '\d{3}'), $route->getConditions());
@@ -367,7 +363,6 @@ class RouteTest extends TestCase
         ));
 
         $property = new \ReflectionProperty('\Slim\Route', 'defaultConditions');
-        $property->setAccessible(true);
 
         $this->assertEquals(array(
             'id' => '\d+'
@@ -377,7 +372,6 @@ class RouteTest extends TestCase
     public function testGetDefaultConditions()
     {
         $property = new \ReflectionProperty('\Slim\Route', 'defaultConditions');
-        $property->setAccessible(true);
         $property->setValue($property, array(
             'id' => '\d+'
         ));
@@ -392,7 +386,6 @@ class RouteTest extends TestCase
         $this->markTestSkipped('assertAttributeEquals() has been removed from PHPUnit 9');
 
         $staticProperty = new \ReflectionProperty('\Slim\Route', 'defaultConditions');
-        $staticProperty->setAccessible(true);
         $staticProperty->setValue(array(
             'id' => '\d+'
         ));
@@ -523,7 +516,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($route, 'middleware');
-        $property->setAccessible(true);
         $property->setValue($route, array('foo' => 'bar'));
 
         $this->assertEquals(array('foo' => 'bar'), $route->getMiddleware());
@@ -544,7 +536,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($route, 'methods');
-        $property->setAccessible(true);
         $property->setValue($route, array('GET', 'POST'));
 
         $this->assertEquals(array('GET', 'POST'), $route->getHttpMethods());
@@ -557,7 +548,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($route, 'methods');
-        $property->setAccessible(true);
         $property->setValue($route, array('GET', 'POST'));
 
         $route->appendHttpMethods('PUT');
@@ -602,7 +592,6 @@ class RouteTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($route, 'methods');
-        $property->setAccessible(true);
         $property->setValue($route, array('POST'));
 
         $this->assertTrue($route->supportsHttpMethod('POST'));

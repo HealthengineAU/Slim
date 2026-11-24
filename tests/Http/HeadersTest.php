@@ -42,7 +42,6 @@ class HeadersTest extends TestCase
         $h = new \Slim\Http\Headers();
         $h->set('Http_Content_Type', 'text/html');
         $prop = new \ReflectionProperty($h, 'data');
-        $prop->setAccessible(true);
         $this->assertArrayHasKey('Content-Type', $prop->getValue($h));
     }
 

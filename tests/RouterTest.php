@@ -73,7 +73,6 @@ class RouterTest extends TestCase
         $router->addNamedRoute('foo', $route);
 
         $property = new \ReflectionProperty($router, 'namedRoutes');
-        $property->setAccessible(true);
 
 		$rV = $property->getValue($router);
         $this->assertSame($route, $rV['foo']);
@@ -101,7 +100,6 @@ class RouterTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($router, 'namedRoutes');
-        $property->setAccessible(true);
         $property->setValue($router, array('foo' => $route));
 
         $this->assertSame($route, $router->getNamedRoute('foo'));
@@ -119,17 +117,14 @@ class RouterTest extends TestCase
 
         // Init router routes to array
         $propertyRouterRoutes = new \ReflectionProperty($router, 'routes');
-        $propertyRouterRoutes->setAccessible(true);
         $propertyRouterRoutes->setValue($router, array($route1, $route2));
 
         // Init router named routes to null
         $propertyRouterNamedRoutes = new \ReflectionProperty($router, 'namedRoutes');
-        $propertyRouterNamedRoutes->setAccessible(true);
         $propertyRouterNamedRoutes->setValue($router, null);
 
         // Init route name
         $propertyRouteName = new \ReflectionProperty($route2, 'name');
-        $propertyRouteName->setAccessible(true);
         $propertyRouteName->setValue($route2, 'bar');
 
         $namedRoutes = $router->getNamedRoutes();
@@ -146,7 +141,6 @@ class RouterTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($router, 'namedRoutes');
-        $property->setAccessible(true);
         $property->setValue($router, array('foo' => $route));
 
         $this->assertTrue($router->hasNamedRoute('foo'));
@@ -162,7 +156,6 @@ class RouterTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $property = new \ReflectionProperty($router, 'currentRoute');
-        $property->setAccessible(true);
         $property->setValue($router, $route);
 
         $this->assertSame($route, $router->getCurrentRoute());
@@ -177,11 +170,9 @@ class RouterTest extends TestCase
         $route = new \Slim\Route('/foo', function () {});
 
         $propertyMatchedRoutes = new \ReflectionProperty($router, 'matchedRoutes');
-        $propertyMatchedRoutes->setAccessible(true);
         $propertyMatchedRoutes->setValue($router, array($route));
 
         $propertyCurrentRoute = new \ReflectionProperty($router, 'currentRoute');
-        $propertyCurrentRoute->setAccessible(true);
         $propertyCurrentRoute->setValue($router, null);
 
         $this->assertSame($route, $router->getCurrentRoute());
@@ -195,11 +186,9 @@ class RouterTest extends TestCase
         $router = new \Slim\Router();
 
         $propertyMatchedRoutes = new \ReflectionProperty($router, 'matchedRoutes');
-        $propertyMatchedRoutes->setAccessible(true);
         $propertyMatchedRoutes->setValue($router, array());
 
         $propertyCurrentRoute = new \ReflectionProperty($router, 'currentRoute');
-        $propertyCurrentRoute->setAccessible(true);
         $propertyCurrentRoute->setValue($router, null);
 
         $this->assertNull($router->getCurrentRoute());
@@ -219,7 +208,6 @@ class RouterTest extends TestCase
 		$route3 = $route3->via('PUT');
 
         $routes = new \ReflectionProperty($router, 'routes');
-        $routes->setAccessible(true);
         $routes->setValue($router, array($route1, $route2, $route3));
 
         $matchedRoutes = $router->getMatchedRoutes('GET', '/foo');
@@ -239,7 +227,6 @@ class RouterTest extends TestCase
         $route2 = $route2->via('GET')->name('regexRoute');
 
         $routes = new \ReflectionProperty($router, 'namedRoutes');
-        $routes->setAccessible(true);
         $routes->setValue($router, array(
             'hello' => $route1,
             'regexRoute' => $route2

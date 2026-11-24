@@ -136,7 +136,7 @@ class ContentTypes extends \Slim\Middleware
         fwrite($temp, $input);
         fseek($temp, 0);
         $res = array();
-        while (($data = fgetcsv($temp)) !== false) {
+        while (($data = fgetcsv($temp, null, ',', '"', '\\')) !== false) {
             $res[] = $data;
         }
         fclose($temp);

@@ -41,7 +41,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $prop->setValue($view, new \Slim\Helper\Set(array('foo' => 'bar')));
 
         $this->assertSame(array('foo' => 'bar'), $view->getData());
@@ -51,7 +50,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $prop->setValue($view, new \Slim\Helper\Set(array('foo' => 'bar')));
 
         $this->assertEquals('bar', $view->getData('foo'));
@@ -61,7 +59,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $prop->setValue($view, new \Slim\Helper\Set(array('foo' => 'bar')));
 
         $this->assertNull($view->getData('abc'));
@@ -71,7 +68,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $view->setData('foo', 'bar');
 
         $this->assertEquals(array('foo' => 'bar'), $prop->getValue($view)->all());
@@ -81,7 +77,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
 
         $view->setData('fooClosure', function () {
             return 'foo';
@@ -96,7 +91,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $view->setData(array('foo' => 'bar'));
 
         $this->assertEquals(array('foo' => 'bar'), $prop->getValue($view)->all());
@@ -114,7 +108,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $view->appendData(array('foo' => 'bar'));
 
         $this->assertEquals(array('foo' => 'bar'), $prop->getValue($view)->all());
@@ -124,11 +117,9 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop1 = new \ReflectionProperty($view, 'data');
-        $prop1->setAccessible(true);
         $prop1->setValue($view, new \Slim\Helper\Set(array('foo' => 'bar')));
 
         $prop2 = new \ReflectionProperty($view, 'templatesDirectory');
-        $prop2->setAccessible(true);
         $prop2->setValue($view, dirname(__FILE__) . '/templates');
 
         $output = $view->fetch('test.php', array('foo' => 'baz'));
@@ -139,7 +130,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $prop = new \ReflectionProperty($view, 'data');
-        $prop->setAccessible(true);
         $prop->setValue($view, new \Slim\Helper\Set(array('foo' => 'bar')));
         $view->appendData(array('foo' => '123'));
 
@@ -158,7 +148,6 @@ class ViewTest extends TestCase
     {
         $view = new \Slim\View();
         $property = new \ReflectionProperty($view, 'templatesDirectory');
-        $property->setAccessible(true);
         $property->setValue($view, 'templates');
 
         $this->assertEquals('templates', $view->getTemplatesDirectory());
@@ -181,11 +170,9 @@ class ViewTest extends TestCase
 
         $view = new \Slim\View();
         $prop1 = new \ReflectionProperty($view, 'data');
-        $prop1->setAccessible(true);
         $prop1->setValue($view, new \Slim\Helper\Set(array('foo' => 'bar')));
 
         $prop2 = new \ReflectionProperty($view, 'templatesDirectory');
-        $prop2->setAccessible(true);
         $prop2->setValue($view, dirname(__FILE__) . '/templates');
 
         $view->display('test.php');
@@ -198,7 +185,6 @@ class ViewTest extends TestCase
         $view = new \Slim\View();
 
         $prop2 = new \ReflectionProperty($view, 'templatesDirectory');
-        $prop2->setAccessible(true);
         $prop2->setValue($view, dirname(__FILE__) . '/templates');
 
         $view->display('foo.php');

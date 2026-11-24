@@ -1479,9 +1479,9 @@ class SlimTest extends TestCase
         }
 
         // Test 2
-        error_reporting(E_ALL | E_STRICT); // <-- Report all errors, including E_STRICT
+        error_reporting(E_ALL); // <-- Report all errors
         try {
-            \Slim\Slim::handleErrors(E_STRICT, 'test error', 'Slim.php', 119);
+            \Slim\Slim::handleErrors(E_NOTICE, 'test error', 'Slim.php', 119);
             $this->fail('Slim::handleErrors didn\'t report a enabled error level');
         } catch (\ErrorException $e) {}
 
